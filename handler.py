@@ -2,8 +2,7 @@ from alpaca.data.historical import CryptoHistoricalDataClient
 from alpaca.data.requests import CryptoBarsRequest
 from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 from datetime import datetime, timedelta
-from trader import Trader
-from settings import symbols
+from traders.trader import Trader
 import pandas as pd
 import numpy as np
 import sys
@@ -11,7 +10,7 @@ import sys
 client = CryptoHistoricalDataClient()
 
 # Get and split data with one api call
-def get_data(days_needed: int = 1, tf=TimeFrame.Minute) -> dict:
+def get_data(symbols: list, days_needed: int = 1, tf=TimeFrame.Minute) -> dict:
     request_params = CryptoBarsRequest(
         symbol_or_symbols=symbols,
         timeframe=TimeFrame.Minute,
